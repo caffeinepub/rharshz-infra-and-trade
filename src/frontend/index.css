@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Playfair Display (Display / Headings) ── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VariableFont_wght.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Figtree (Body) ── */
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree-VariableFont_wght.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* ── Core palette (Deep Navy × White × Brushed Silver × Gold) ── */
+    /* Navy #0A1628  →  oklch(0.156 0.042 253) */
+    /* Silver #B0B7C3 → oklch(0.74 0.015 253) */
+    /* Silver-light #D4D8E1 → oklch(0.87 0.012 253) */
+    /* Gold #C9A84C → oklch(0.73 0.12 80) */
+
+    --navy:            0.156 0.042 253;
+    --navy-mid:        0.22  0.038 253;
+    --navy-light:      0.30  0.032 253;
+    --silver:          0.74  0.015 253;
+    --silver-light:    0.87  0.012 253;
+    --gold:            0.73  0.12  80;
+    --gold-dark:       0.60  0.10  80;
+
+    /* Semantic tokens */
+    --background:       1    0    0;        /* white */
+    --foreground:       0.156 0.042 253;    /* navy */
+    --card:             1    0    0;
+    --card-foreground:  0.156 0.042 253;
+    --popover:          1    0    0;
+    --popover-foreground: 0.156 0.042 253;
+
+    --primary:          0.156 0.042 253;    /* navy */
+    --primary-foreground: 1   0    0;       /* white */
+
+    --secondary:        0.87  0.012 253;    /* silver-light */
+    --secondary-foreground: 0.156 0.042 253;
+
+    --muted:            0.94  0.008 253;
+    --muted-foreground: 0.50  0.020 253;
+
+    --accent:           0.73  0.12  80;     /* gold */
+    --accent-foreground: 0.156 0.042 253;   /* navy text on gold */
+
+    --destructive:      0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border:           0.87  0.012 253;    /* silver-light */
+    --input:            0.87  0.012 253;
+    --ring:             0.73  0.12  80;     /* gold ring */
+
+    --chart-1: 0.73  0.12  80;
+    --chart-2: 0.60  0.10  80;
+    --chart-3: 0.74  0.015 253;
+    --chart-4: 0.156 0.042 253;
+    --chart-5: 0.50  0.020 253;
+
+    --sidebar:          0.156 0.042 253;
+    --sidebar-foreground: 1   0    0;
+    --sidebar-primary:  0.73  0.12  80;
+    --sidebar-primary-foreground: 0.156 0.042 253;
+    --sidebar-accent:   0.22  0.038 253;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border:   0.30  0.032 253;
+    --sidebar-ring:     0.73  0.12  80;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Figtree", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", "Georgia", serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ── Utility classes ── */
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", "Georgia", serif;
+  }
+
+  .font-body {
+    font-family: "Figtree", "Helvetica Neue", sans-serif;
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .text-navy {
+    color: oklch(var(--navy));
+  }
+
+  .text-silver {
+    color: oklch(var(--silver));
+  }
+
+  .bg-navy {
+    background-color: oklch(var(--navy));
+  }
+
+  .bg-navy-mid {
+    background-color: oklch(var(--navy-mid));
+  }
+
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+
+  .bg-silver-light {
+    background-color: oklch(var(--silver-light));
+  }
+
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+
+  .border-silver {
+    border-color: oklch(var(--silver));
+  }
+
+  .border-silver-light {
+    border-color: oklch(var(--silver-light));
+  }
+
+  /* Hero parallax shimmer */
+  @keyframes hero-shimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes counter-up {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s ease forwards;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  .section-divider {
+    border-top: 1px solid oklch(var(--silver-light));
+  }
+
+  /* Card lift on hover */
+  .card-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15);
+  }
+
+  /* Gold left border on service card hover */
+  .service-card-hover {
+    transition: border-left-color 0.25s ease, background-color 0.25s ease;
+    border-left: 3px solid transparent;
+  }
+  .service-card-hover:hover {
+    border-left-color: oklch(var(--gold));
+    background-color: oklch(var(--silver-light));
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+}
